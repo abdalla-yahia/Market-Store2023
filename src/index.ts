@@ -3,8 +3,6 @@ import morgan from 'morgan';
 import helmet from 'helmet';
 import rateLimit from 'express-rate-limit';
 
-
-
 const app: Application = express();
 const port = process.env.PORT || 3000;
 
@@ -20,7 +18,8 @@ app.use(
         max: 3, // Limit each IP to 100 requests per `window` (here, per 15 minutes)
         standardHeaders: true, // Return rate limit info in the `RateLimit-*` headers
         legacyHeaders: false, // Disable the `X-RateLimit-*` headers
-        message:"Many Requests has been sent from this Ip please try again after 2 minutes"
+        message:
+            'Many Requests has been sent from this Ip please try again after 2 minutes',
     })
 );
 app.get('/', (req: Request, res: Response) => {
