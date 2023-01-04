@@ -21,7 +21,7 @@ module.exports = {
         "prettier"
     ],
     "rules": {
-        "prettier/prettier": 2,
+        "prettier/prettier": 1,
         "no-console": 0,
         "no-var":1
     }
