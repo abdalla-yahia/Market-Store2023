@@ -5,6 +5,7 @@ import rateLimit from 'express-rate-limit';
 import errorMiddleware from './middlewares/errorMiddleware';
 import db from './database';
 import config from './config';
+import routes from './routes';
 
 const app: Application = express();
 const port = config.port;
@@ -18,7 +19,7 @@ app.use(express.urlencoded({ extended: true }));
 app.use(
     rateLimit({
         windowMs: 2 * 60 * 1000, // 15 minutes
-        max: 3, // Limit each IP to 100 requests per `window` (here, per 15 minutes)
+        max: 100, // Limit each IP to 100 requests per `window` (here, per 15 minutes)
         standardHeaders: true, // Return rate limit info in the `RateLimit-*` headers
         legacyHeaders: false, // Disable the `X-RateLimit-*` headers
         message:
@@ -29,6 +30,7 @@ app.get('/', (req: Request, res: Response) => {
     // throw new Error('Error eccured');
     res.send('Welcome To Our Page 😁');
 });
+app.use('/api', routes);
 db.connect().then((client) => {
     return client
         .query('SELECT NOW()')
