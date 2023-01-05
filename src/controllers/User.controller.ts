@@ -128,7 +128,7 @@ export const GetAllUsers = async (
 ) => {
     try {
         const GetUsers = await usermodel.GetAllUsers();
-         // eslint-disable-next-line no-constant-condition
+        // eslint-disable-next-line no-constant-condition
         if ([...GetUsers].length < 1) {
             res.json({ message: 'Opps Not Found Any Users To Get' });
         } else {

@@ -3,7 +3,7 @@ type User = {
     user_name?: string;
     first_name?: string;
     last_name?: string;
-    password?: number;
+    password?: string;
 };
 
 export default User;
